@@ -1,0 +1,218 @@
+<head>
+    <title>Recom</title>
+
+    <!-- Bootstrap Core CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="pluginCSS.css" rel="stylesheet">
+
+    <!-- jQuerry -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+</head>
+
+<body>
+    <div id='recomScope'>
+        <style scoped>
+            @import 'https://dl.dropboxusercontent.com/s/ytmj2rz8b1kjf6z/plugin.css?dl=0';
+        </style>
+        <div id='review'>
+            <ul id='review-list' class='review-list'>
+                <li class='review' id={{reviewId}}>
+                    <div class='review-content'>
+                        <ul class='review-menu dropdown'>
+                            <li class='collapse'>
+                                <a href='#' title='Collapse'><span>-</span></a>
+                            </li>
+                            <li class='expand'>
+                                <a href='#' title='Expand'><span>+</span></a>
+                            </li>
+                            <li class='' role='menu'>
+                                <a class='dropdown-toggle' href='#' title='Flag as inappropriate'>
+                                    <i aria-hidden='true' class='icon icon-flag'></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class='indicator'></div>
+                        <div class='avatar hovercard'>
+                            <a href={{userURL}} class='user' data-action='profile' data-username={{username}}>
+                                <img data-role='user-avatar' data-user='37155060' src= {{userAvatarURL}}  alt='Avatar'>
+                            </a>
+                        </div>
+
+                        <div class='review-body'>
+                            <header>
+                                <span class='review-byline'>
+                                    <span class='author publisher-anchor-color'><a href={{userURL}}>{{username}}</a></span>
+                                    <span class='stars'>
+                                        {{#if parent}}
+                                        {{else}}
+                                        <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                        <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                        <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                        <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                        <span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                                        {{/if}}
+                                    </span>
+                                </span>
+                                <span class='review-meta'>
+                                    <span class='bullet time-ago-bullet' aria-hidden='true'>.</span>
+                                    <a href={{shopComent}} data-role='relative-time' class='time-ago' title={{longTime}}>{{shortTime}}</a>
+                                </span>
+                            </header>
+
+                            <div class='review-body-inner'>
+                                <div class='review-message-container' data-role='message-container'>
+                                    <div class='publisher-anchor-color' data-role='message-content'>
+                                        <div class='review-message ' data-role='message' dir='auto'>
+                                            {{reviewContent}}
+                                        </div>
+                                        <span class='review-media'><ul data-role='review-media-list'></ul></span>
+                                    </div>
+                                </div>
+                                <a class='see-more hidden' title='see more' data-action='see-more'>see more</a>
+                            </div>
+
+                            <footer>
+                                <menu>
+                                    <ul>
+                                        <li class='voting' data-role='voting'>
+                                            <a href='#' class='vote-up count-31' data-action='upvote' title=''>
+                                                <span class='updatable count' data-role='likes'>{{likesCount}}</span>
+                                                <span class='control'><i aria-hidden='true' class='icon icon-arrow-2'></i></span>
+                                            </a>
+                                            <a href='#' class='vote-down count-3' data-action='downvote' title=''>
+                                                <span class='updatable count' data-role='dislikes'>{{dislikesCount}}</span>
+                                                <span class='control'><i aria-hidden='true' class='icon icon-arrow-1'></i></span>
+                                            </a>
+                                        </li>
+                                        <li class='bullet' aria-hidden='true'>•</li>
+                                        <li class='reply' data-role='reply-link'>
+                                            <a href='#' data-action='reply'>
+                                                <i class='icon icon-mobile icon-reply'></i><span class='text'>Reply</span>
+                                            </a>
+                                        </li>
+                                        <li class='bullet' aria-hidden='true'>•</li>
+                                        <li class='share'>
+                                            <a class='toggle'><i class='icon icon-mobile icon-share'></i><span class='text'>Share -</span></a>
+                                            <ul>
+                                                <li class='twitter'><a href='#' data-action='share:twitter'>Twitter</a></li>
+                                                <li class='facebook'><a href='#' data-action='share:facebook'>Facebook</a></li>
+                                                <li class='link'><a href={{shopComent}}>Link</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </menu>
+                            </footer>
+                        </div>
+                        <div data-role='blacklist-form'></div>
+                        <div class='reply-form-container' data-role='reply-form'></div>
+                    </div>
+                    <ul data-role='children' class='children'></ul>
+                </li>
+            </ul>
+
+            <div class='reply-form-container'>
+                <form class='reply expanded'>
+                    <div class='reviewbox'>
+                        <div role='alert'></div>
+                        <div class='avatar'>
+                            <span class='user'>
+                                <img data-role='user-avatar' src='https://help.github.com/assets/images/site/set-up-git.gif' alt='Avatar'>
+                            </span>
+                        </div>
+
+                        <div class='textarea-wrapper' data-role='textarea' dir='auto'>
+
+                            <div>
+                                <span class='placeholder'>Add a review...</span>
+                                <div class='textarea' tabindex='0' role='textbox' aria-multiline='true' contenteditable='true' data-role='editable' aria-label='Add a review...' style='overflow: auto; max-height: 350px;'>
+                                    <p><br></p>
+                                </div>
+                                <div style='display: none;'>
+                                    <ul class='suggestions'>
+                                        <li class='header'>
+                                            <h5>in this conversation</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class='media-preview empty' data-role='media-preview'>
+                                <ul data-role='media-legacy-list'></ul>
+                                <ul data-role='media-progress-list'></ul>
+                                <ul data-role='media-rich-list'></ul>
+                                <div class='media-expanded empty' data-role='media-preview-expanded'>
+                                    <img src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-role='media-preview-expanded-image' alt='Media preview placeholder'>
+                                </div>
+                            </div>
+
+                            <div class='edit-alert'></div>
+                            <span class='stars'>
+                                {{#if parent}}
+                                {{else}}
+                                <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                <span class='glyphicon glyphicon-star' aria-hidden='true'></span>
+                                <span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                                {{/if}}
+                            </span>
+                        </div>
+
+                        <div data-role='login-form'>
+                            <div>
+                                <section class='auth-section logged-out'>
+                                    <div class='connect'>
+                                        <h6>Log in with</h6>
+                                        <ul data-role='login-menu' class='services login-buttons'>
+                                            <li class='auth-recom'>
+                                                <button type='button' data-action='auth:recom' title='Recom'><i class='icon-recom'></i></button>
+                                            </li>
+                                            <li class='auth-facebook'>
+                                                <button type='button' data-action='auth:facebook' title='Facebook'><i class='icon-facebook-circle'></i></button>
+                                            </li>
+                                            <li class='auth-twitter'>
+                                                <button type='button' data-action='auth:twitter' title='Twitter'><i class='icon-twitter-circle'></i></button>
+                                            </li>
+                                            <li class='auth-google'>
+                                                <button type='button' data-action='auth:google' title='Google'><i class='icon-google-plus-circle'></i></button>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class='guest'>
+                                        <h6 class='guest-form-title'>
+                                            <span class='register-text'> or sign up with Recom </span>
+                                            <span class='guest-text'> or pick a name </span>
+                                        </h6>
+                                        <p class='input-wrapper'>
+                                            <input dir='auto' type='text' placeholder='Name' name='display_name' id='view1174_display_name' maxlength='30'>
+                                        </p>
+                                        <div class='guest-details ' data-role='guest-details'>
+                                            <p class='input-wrapper'>
+                                                <input dir='auto' type='email' placeholder='Email' name='email' id='view1174_email'>
+                                            </p>
+                                            <p class='input-wrapper'>
+                                                <input dir='auto' type='password' class='register-text' placeholder='Password' name='password' id='view1174_password'>
+                                            </p>
+                                            <input type='checkbox' name='author-guest' style='display:none'>
+                                            <div class='proceed'>
+                                                <button type='button' class='btn submit'><span class='icon-proceed'></span><div class='spinner'></div></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <script src="../pagePlugin.js"></script>
+</footer>
